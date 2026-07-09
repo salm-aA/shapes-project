@@ -17,25 +17,25 @@ public class ShapeManagement {
 
             switch (choice) {
                 case 1:
-                    // TODO: ask which shape to add and collect the required values.
+                    addShape(scanner, shapes);
                     break;
                 case 2:
-                    // TODO: ask for position and remove a shape.
+                    removeShape(scanner, shapes);
                     break;
                 case 3:
-                    // TODO: ask for position and display one shape.
+                    displayOneShape(scanner, shapes);
                     break;
                 case 4:
-                    // TODO: ask for position and display area and perimeter.
+                    displayAreaAndPerimeter(scanner, shapes);
                     break;
                 case 5:
-                    // TODO: display all shapes.
+                    System.out.println(shapes.display());
                     break;
                 case 6:
-                    // TODO: ask for dx and dy, then translate all shapes.
+                    translateShapes(scanner, shapes);
                     break;
                 case 7:
-                    // TODO: ask for factor and sign, then scale all shapes.
+                    scaleShapes(scanner, shapes);
                     break;
                 case 0:
                     running = false;
@@ -59,5 +59,141 @@ public class ShapeManagement {
         System.out.println("7: scale all the shapes");
         System.out.println("0: quit program");
         System.out.print("Choose an option: ");
+    }
+
+    private static void addShape(Scanner scanner, ShapeList shapes) {
+        System.out.println("Choose the shape to add:");
+        System.out.println("1: triangle");
+        System.out.println("2: rectangle");
+        System.out.println("3: circle");
+        System.out.println("4: square");
+        System.out.print("Shape option: ");
+        int shapeChoice = scanner.nextInt();
+
+        switch (shapeChoice) {
+            case 1:
+                shapes.addShape(createTriangle(scanner));
+                System.out.println("Triangle added.");
+                break;
+            case 2:
+                shapes.addShape(createRectangle(scanner));
+                System.out.println("Rectangle added.");
+                break;
+            case 3:
+                shapes.addShape(createCircle(scanner));
+                System.out.println("Circle added.");
+                break;
+            case 4:
+                shapes.addShape(createSquare(scanner));
+                System.out.println("Square added.");
+                break;
+            default:
+                System.out.println("Invalid shape option.");
+                break;
+        }
+    }
+
+    private static Triangle createTriangle(Scanner scanner) {
+        System.out.println("Enter vertex 1:");
+        Coordinates vertex1 = readCoordinates(scanner);
+        System.out.println("Enter vertex 2:");
+        Coordinates vertex2 = readCoordinates(scanner);
+        System.out.println("Enter vertex 3:");
+        Coordinates vertex3 = readCoordinates(scanner);
+
+        return new Triangle(vertex1, vertex2, vertex3);
+    }
+
+    private static Rectangle createRectangle(Scanner scanner) {
+        Coordinates position = readCoordinates(scanner);
+        System.out.print("Enter width: ");
+        int width = scanner.nextInt();
+        System.out.print("Enter length: ");
+        int length = scanner.nextInt();
+
+        return new Rectangle(position, width, length);
+    }
+
+    private static Circle createCircle(Scanner scanner) {
+        Coordinates position = readCoordinates(scanner);
+        System.out.print("Enter radius: ");
+        int radius = scanner.nextInt();
+
+        return new Circle(position, radius);
+    }
+
+    private static Square createSquare(Scanner scanner) {
+        Coordinates position = readCoordinates(scanner);
+        System.out.print("Enter side: ");
+        int side = scanner.nextInt();
+
+        return new Square(position, side);
+    }
+
+    private static Coordinates readCoordinates(Scanner scanner) {
+        System.out.print("Enter x: ");
+        int x = scanner.nextInt();
+        System.out.print("Enter y: ");
+        int y = scanner.nextInt();
+
+        return new Coordinates(x, y);
+    }
+
+    private static void removeShape(Scanner scanner, ShapeList shapes) {
+        System.out.print("Enter the position to remove: ");
+        int position = scanner.nextInt();
+        Shape removedShape = shapes.removeShape(position);
+
+        if (removedShape != null) {
+            System.out.println("Removed: " + removedShape.display());
+        }
+    }
+
+    private static void displayOneShape(Scanner scanner, ShapeList shapes) {
+        System.out.print("Enter the position to display: ");
+        int position = scanner.nextInt();
+        Shape shape = shapes.getShape(position);
+
+        if (shape != null) {
+            System.out.println(shape.display());
+        }
+    }
+
+    private static void displayAreaAndPerimeter(Scanner scanner, ShapeList shapes) {
+        System.out.print("Enter the position: ");
+        int position = scanner.nextInt();
+        Shape shape = shapes.getShape(position);
+
+        if (shape != null) {
+            System.out.println("Area: " + shape.getArea());
+            System.out.println("Perimeter: " + shape.getPerimeter());
+        }
+    }
+
+    private static void translateShapes(Scanner scanner, ShapeList shapes) {
+        System.out.print("Enter x distance: ");
+        int dx = scanner.nextInt();
+        System.out.print("Enter y distance: ");
+        int dy = scanner.nextInt();
+
+        shapes.translateShapes(dx, dy);
+        System.out.println("All shapes translated.");
+    }
+
+    private static void scaleShapes(Scanner scanner, ShapeList shapes) {
+        System.out.print("Enter scale factor: ");
+        int factor = scanner.nextInt();
+
+        if (factor == 0) {
+            System.out.println("Scale factor cannot be 0.");
+            return;
+        }
+
+        System.out.print("Enter 1 to multiply or 0 to divide: ");
+        int option = scanner.nextInt();
+        boolean sign = option == 1;
+
+        shapes.scale(factor, sign);
+        System.out.println("All shapes scaled.");
     }
 }
