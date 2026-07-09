@@ -17,32 +17,53 @@ public class ShapeList {
     }
 
     public Shape getShape(int pos) {
-        // TODO: check whether pos is valid before returning a shape.
-        // Decide whether your menu uses 0-based or 1-based positions and be consistent.
+        if (isValidPosition(pos)) {
+            return listOfShapes.get(pos - 1);
+        }
+
+        System.out.println("There is no shape at position " + pos + ".");
         return null;
     }
 
     public Shape removeShape(int pos) {
-        // TODO: check whether pos is valid before removing a shape.
+        if (isValidPosition(pos)) {
+            return listOfShapes.remove(pos - 1);
+        }
+
+        System.out.println("There is no shape at position " + pos + ".");
         return null;
     }
 
     public double area(int pos) {
-        // TODO: return the selected shape's area, or handle invalid positions gracefully.
+        Shape shape = getShape(pos);
+
+        if (shape != null) {
+            return shape.getArea();
+        }
+
         return 0.0;
     }
 
     public double perimeter(int pos) {
-        // TODO: return the selected shape's perimeter, or handle invalid positions gracefully.
+        Shape shape = getShape(pos);
+
+        if (shape != null) {
+            return shape.getPerimeter();
+        }
+
         return 0.0;
     }
 
     public void translateShapes(int dx, int dy) {
-        // TODO: translate every shape in the list.
+        for (Shape shape : listOfShapes) {
+            shape.translate(dx, dy);
+        }
     }
 
     public void scale(int factor, boolean sign) {
-        // TODO: scale every shape in the list.
+        for (Shape shape : listOfShapes) {
+            shape.scale(factor, sign);
+        }
     }
 
     public int getNumberOfShapes() {
@@ -50,7 +71,21 @@ public class ShapeList {
     }
 
     public String display() {
-        // TODO: build and return information for all shapes.
-        return "";
+        if (listOfShapes.isEmpty()) {
+            return "There are no shapes in the list.";
+        }
+
+        String result = "";
+
+        for (int i = 0; i < listOfShapes.size(); i++) {
+            result = result + "Position " + (i + 1) + ": "
+                    + listOfShapes.get(i).display() + "\n";
+        }
+
+        return result;
+    }
+
+    private boolean isValidPosition(int pos) {
+        return pos >= 1 && pos <= listOfShapes.size();
     }
 }
