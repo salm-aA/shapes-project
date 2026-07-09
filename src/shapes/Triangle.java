@@ -15,29 +15,42 @@ public class Triangle extends Shape {
 
     @Override
     public void translate(int dx, int dy) {
-        // TODO: move all three vertices.
+        getCoordinates().translate(dx, dy);
+        vertex2.translate(dx, dy);
+        vertex3.translate(dx, dy);
     }
 
     @Override
     public void scale(int factor, boolean sign) {
-        // TODO: scale all three vertices.
+        getCoordinates().scale(factor, sign);
+        vertex2.scale(factor, sign);
+        vertex3.scale(factor, sign);
     }
 
     @Override
     public double getArea() {
-        // TODO: use Heron's Formula with the three side distances.
-        return 0.0;
+        double sideA = getCoordinates().distance(vertex2);
+        double sideB = vertex2.distance(vertex3);
+        double sideC = vertex3.distance(getCoordinates());
+        double semiPerimeter = (sideA + sideB + sideC) / 2;
+
+        return Math.sqrt(semiPerimeter * (semiPerimeter - sideA)
+                * (semiPerimeter - sideB) * (semiPerimeter - sideC));
     }
 
     @Override
     public double getPerimeter() {
-        // TODO: add the three distances between vertices.
-        return 0.0;
+        double sideA = getCoordinates().distance(vertex2);
+        double sideB = vertex2.distance(vertex3);
+        double sideC = vertex3.distance(getCoordinates());
+
+        return sideA + sideB + sideC;
     }
 
     @Override
     public String display() {
-        // TODO: include all vertices, area, and perimeter.
-        return "Triangle";
+        return "Triangle: vertex 1 (" + getCoordinates().display() + "), vertex 2 ("
+                + vertex2.display() + "), vertex 3 (" + vertex3.display()
+                + "), area = " + getArea() + ", perimeter = " + getPerimeter();
     }
 }
