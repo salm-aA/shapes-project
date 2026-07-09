@@ -15,24 +15,31 @@ public class Rectangle extends Shape {
 
     @Override
     public void scale(int factor, boolean sign) {
-        // TODO: scale the inherited position, width, and length.
+        getCoordinates().scale(factor, sign);
+
+        if (sign) {
+            width = width * factor;
+            length = length * factor;
+        } else {
+            width = width / factor;
+            length = length / factor;
+        }
     }
 
     @Override
     public double getArea() {
-        // TODO: return width * length.
-        return 0.0;
+        return width * length;
     }
 
     @Override
     public double getPerimeter() {
-        // TODO: return 2 * width + 2 * length.
-        return 0.0;
+        return (2 * width) + (2 * length);
     }
 
     @Override
     public String display() {
-        // TODO: include shape name, position, width, length, area, and perimeter.
-        return "Rectangle";
+        return "Rectangle: position (" + getCoordinates().display() + "), width = " + width
+                + ", length = " + length + ", area = " + getArea()
+                + ", perimeter = " + getPerimeter();
     }
 }

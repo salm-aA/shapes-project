@@ -24,22 +24,30 @@ public class Coordinates {
      * Calculates the distance between this point and another point.
      */
     public double distance(Coordinates p) {
-        // TODO: use Math.sqrt and Math.pow to calculate the distance formula.
-        return 0.0;
+        int differenceX = x - p.getX();
+        int differenceY = y - p.getY();
+        return Math.sqrt((differenceX * differenceX) + (differenceY * differenceY));
     }
 
     /**
      * Moves the coordinate by the given x and y distances.
      */
     public void translate(int dx, int dy) {
-        // TODO: add dx to x and dy to y.
+        x = x + dx;
+        y = y + dy;
     }
 
     /**
      * Scales the coordinate by multiplying or dividing by the factor.
      */
     public void scale(int factor, boolean sign) {
-        // TODO: if sign is true multiply both values; otherwise divide both values.
+        if (sign) {
+            x = x * factor;
+            y = y * factor;
+        } else {
+            x = x / factor;
+            y = y / factor;
+        }
     }
 
     /**
