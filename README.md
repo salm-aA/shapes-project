@@ -43,18 +43,4 @@ src/shapes/
   Triangle.java
   ShapeList.java
   ShapeManagement.java
-```
 
-## How to Run
-
-Compile the program from the project folder:
-
-```bash
-javac -d out src/shapes/*.java
-```
-
-Run the main program:
-
-```bash
-java -cp out shapes.ShapeManagement
-```
