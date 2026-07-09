@@ -1,27 +1,33 @@
-# IY4101 Assignment 2 Support Pack
 
-This pack is designed to help you complete the coursework yourself without turning it into a copied finished submission.
+# Shapes Project
 
-## What the assignment expects
+This repository contains my Object Oriented Programming Final assessment. The program manages a list of geometrical shapes and performs calculations.
 
-- A Java program that manages a list of shapes using object-oriented design.
-- Classes for `Coordinates`, abstract `Shape`, `Rectangle`, `Square`, `Circle`, `Triangle`, `ShapeList`, and `ShapeManagement`.
-- Inheritance and method overriding for the shape hierarchy.
-- A console menu with options to add, remove, inspect, translate, scale, and display shapes.
-- A UML class diagram showing the relationship between all classes.
-- A report of 500-800 words excluding code and references.
-- A test plan with expected and actual results.
-- Source code included in a VCS repository and copied into the report appendix.
+## Project Description
 
-## How to use this pack
+The program is written in Java and uses object-oriented programming principles. It includes an abstract Shape class and four subclasses:
 
-1. Open the Java files in `src/shapes`.
-2. Complete every `TODO` using the assignment brief.
-3. Compile and run the program.
-4. Record real test results in `report_template.md`.
-5. Convert `uml_class_diagram.puml` into a diagram using PlantUML or another digital UML tool.
-6. Paste your final source code into the report appendix.
+- Rectangle.
+- Square.
+- Circle.
+- Triangle.
 
-## Important
+The program also includes a Coordinates class to store positions and a ShapeList class to manage multiple shapes.
 
-The assignment brief says this is an individual assessment. Use this as guidance and a starting structure, not as a finished answer to submit unchanged.
+## Main Features
+
+- Add shapes to a list.
+- Remove a shape by position.
+- Display information about one shape.
+- Calculate area and perimeter.
+- Display all shapes.
+- Translate all shapes.
+- Scale all shapes.
+- Handle invalid positions without crashing.
+
+## Object-Oriented Concepts Used.
+
+- Encapsulation: class attributes are private and accessed through methods.
+- Abstraction: Shape is an abstract superclass.
+- Inheritance: specific shapes extend the Shape class.
+- Polymorphism: different shape objects are stored and used through the Shape type.
