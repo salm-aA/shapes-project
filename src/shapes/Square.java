@@ -13,24 +13,28 @@ public class Square extends Shape {
 
     @Override
     public void scale(int factor, boolean sign) {
-        // TODO: scale the inherited position and side.
+        getCoordinates().scale(factor, sign);
+
+        if (sign) {
+            side = side * factor;
+        } else {
+            side = side / factor;
+        }
     }
 
     @Override
     public double getArea() {
-        // TODO: return side * side.
-        return 0.0;
+        return side * side;
     }
 
     @Override
     public double getPerimeter() {
-        // TODO: return 4 * side.
-        return 0.0;
+        return 4 * side;
     }
 
     @Override
     public String display() {
-        // TODO: include shape name, position, side, area, and perimeter.
-        return "Square";
+        return "Square: position (" + getCoordinates().display() + "), side = " + side
+                + ", area = " + getArea() + ", perimeter = " + getPerimeter();
     }
 }

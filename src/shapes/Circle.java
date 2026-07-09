@@ -13,24 +13,28 @@ public class Circle extends Shape {
 
     @Override
     public void scale(int factor, boolean sign) {
-        // TODO: scale the inherited position and radius.
+        getCoordinates().scale(factor, sign);
+
+        if (sign) {
+            radius = radius * factor;
+        } else {
+            radius = radius / factor;
+        }
     }
 
     @Override
     public double getArea() {
-        // TODO: return Math.PI * radius * radius.
-        return 0.0;
+        return Math.PI * radius * radius;
     }
 
     @Override
     public double getPerimeter() {
-        // TODO: return 2 * Math.PI * radius.
-        return 0.0;
+        return 2 * Math.PI * radius;
     }
 
     @Override
     public String display() {
-        // TODO: include shape name, centre position, radius, area, and perimeter.
-        return "Circle";
+        return "Circle: centre (" + getCoordinates().display() + "), radius = " + radius
+                + ", area = " + getArea() + ", perimeter = " + getPerimeter();
     }
 }
